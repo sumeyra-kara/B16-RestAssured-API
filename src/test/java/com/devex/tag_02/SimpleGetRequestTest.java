@@ -38,4 +38,21 @@ public class SimpleGetRequestTest {
         Assert.assertEquals(response.contentType(),"application/json; charset=utf-8");
     }
 
+    @Test
+    public void testSimpleGetRequest4(){
+        Response response =RestAssured.given().accept(ContentType.JSON).when().get(url + "/api/profile");
+
+        // verifizierung
+        response.then().assertThat().statusCode(200).contentType("application/json; charset=utf-8");
+        System.out.println("response.getStatusCode() = " + response.getStatusCode());
+
+        Assert.assertTrue(response.asString().contains("jrdev@gmail.com"));
+
+
+
+
+
+    }
+
+
 }
