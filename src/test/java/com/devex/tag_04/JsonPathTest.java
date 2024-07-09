@@ -19,7 +19,7 @@ public class JsonPathTest {
                 .and().get(baseUrl + "/api/profile/userQuery");
         response.prettyPrint();
 
-        JsonPath jsonData = response.jsonPath();
+        JsonPath jsonData = response.jsonPath(); // jsonpath istedigimiz return type olarak doner bize genis kapsamli yani
         String status = jsonData.get("status"); // return type string
         Object status1 = response.path("status"); // return type object
 
@@ -65,6 +65,7 @@ public class JsonPathTest {
         System.out.println("*****************");
 
         List<String> skills = jsonData.getList("[1].skills"); // fur erste Users skills
+        // !!!!!!!!!!!!!!! kisa yol foreach icin !!!!!!!!!!!1
         skills.forEach(p -> System.out.println("p = " + p));
 
         List<List<String>> usersForSkills = jsonData.getList("skills"); // alle users skills

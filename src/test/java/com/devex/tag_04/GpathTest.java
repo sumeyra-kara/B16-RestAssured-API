@@ -10,6 +10,7 @@ import java.util.List;
 import static io.restassured.RestAssured.given;
 
 public class GpathTest {
+    // gpath filtreleme yapabilmek veya hesaplama yapabilmek icin bir yol
 
     String baseUrl = "http://www.eurotech.study";
     @Test
