@@ -42,7 +42,6 @@ public class JsonPathTest {
         System.out.println("userIds.size() = " + userIds.size()); // 938
         System.out.println("userIds = " + userIds);
         // ************* MAP ++++++++ ilk user bilgileri
-
         Map<String, Object> firstUserInfo = jsonData.getMap("user[0]");
         // System.out.println("firstUserInfo.keySet() = " + firstUserInfo.keySet());
 
@@ -51,7 +50,6 @@ public class JsonPathTest {
         }
 
         // peki tum user bilgileri icin list und Map
-
         List<Map<String,Object>> alleUserInfos  =jsonData.getList("user");
 
         for (Map<String,Object> allUserInfo : alleUserInfos){
@@ -62,6 +60,7 @@ public class JsonPathTest {
                 System.out.println(key +" : " +allUserInfo.get(key));
             }
         }
+
         //
         System.out.println("*****************");
 
