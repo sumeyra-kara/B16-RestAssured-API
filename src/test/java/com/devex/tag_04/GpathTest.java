@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
 
 public class GpathTest {
     // gpath filtreleme yapabilmek veya hesaplama yapabilmek icin bir yol
