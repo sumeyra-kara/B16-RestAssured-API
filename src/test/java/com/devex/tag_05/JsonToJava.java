@@ -12,6 +12,8 @@ import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 
 public class JsonToJava {
+    // Verilen Json objesini testlerimizde kullanmak uzere Java objesine cevirmeye ise De-Serialization denir.
+    // Bunun icin Gson kutuphanesinden yararlanabiliriz.
     @BeforeMethod
     public void setUp(){
         baseURI = "http://www.eurotech.study";
@@ -23,8 +25,8 @@ public class JsonToJava {
                 .get("/api/profile/userquery");
         response.prettyPrint();
 
-        Map<String,Object> map = response.as(Map.class);
-        System.out.println("map = " + map);
+        Map<String,Object> map = response.as(Map.class); // De-Serialization ile Json iken Map'e cevriliyor
+        System.out.println("map = " + map); // suan map formatinda
 
     }
 
@@ -33,8 +35,8 @@ public class JsonToJava {
 
         Response response = given().accept(ContentType.JSON)
                 .when().get("/api/profile");
-
-        List<Map<String,Object>> list = response.as(List.class); // jsonObject list'e cevriliyor
+        // suan response json formatinda-- ama ....
+        List<Map<String,Object>> list = response.as(List.class); // jsonObject list'e yani java object'i cevriliyor
 
         System.out.println("list = " + list);
     }
