@@ -1,7 +1,9 @@
 package com.devex.tag_06;
 
+import com.devex.pojos.AllUsers;
 import com.devex.pojos.TestUserQuery;
 import com.devex.pojos.UserQuery;
+import com.google.gson.Gson;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeMethod;
@@ -13,13 +15,15 @@ import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 
 public class PojoTest {
+    Gson gson;
     @BeforeMethod
     public void setUp(){
         baseURI = "http://www.eurotech.study";
+        gson=new Gson();
     }
 
     @Test
-    public void test() {
+    public void test1() {
 
         Response response = given().accept(ContentType.JSON).when().queryParam("id", 2006)
                 .get("/api/profile/userquery");
@@ -40,6 +44,49 @@ public class PojoTest {
         TestUserQuery testUserQuery = response.as(TestUserQuery.class);
         System.out.println("testUserQuery.getCompany() = " + testUserQuery.getCompany());
 
+    }
+
+    @Test
+    public void test2() {
+
+        Response response = given().accept(ContentType.JSON)
+                .when().pathParam("id", 2006)
+                .and().get("/api/profile/user/{id}");
+
+        AllUsers allUsers = response.body().as(AllUsers.class);
+        //AllUsers allUsers = gson.fromJson(response.body().asString(), AllUsers.class);
+        System.out.println("allUsers.getCompany() = " + allUsers.getCompany());
+
+        System.out.println("allUsers.getUser().getEmail() = " + allUsers.getUser().getEmail());
+
+        System.out.println("allUsers.getEducation().get(1).getSchool() = " + allUsers.getEducation().get(1).getSchool());
+
+        System.out.println("allUsers.getExperience().get(0).getLocation() = " + allUsers.getExperience().get(0).getLocation());
+    }
+
+
+    @Test
+    public void test3() {
+
+        UserQuery userQuery = new UserQuery(1111111.0, "test@test.com", "testName", "testCompany", "available", 2222);
+
+        String json = gson.toJson(userQuery);
+
+        System.out.println("json = " + json);
 
     }
+
+    @Test
+    public void test4() {
+
+        Response response = given().accept(ContentType.JSON)
+                .when().get("/api/profile");
+
+        AllUsers[] usersArray = gson.fromJson(response.body().asString(), AllUsers[].class);
+
+        System.out.println("usersArray[924].getGithubusername() = " + usersArray[924].getGithubusername());
+
+
+    }
+
 }
