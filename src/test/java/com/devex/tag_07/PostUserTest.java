@@ -56,7 +56,6 @@ public class PostUserTest {
 
         assertThat(response1.path("name"),equalTo(name));
 
-
     }
 
     @Test

@@ -1,11 +1,10 @@
 package com.devex.pojos;
 
-import lombok.Data; // getter setter toString hepsini icerir
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
+@AllArgsConstructor
 @Data
+@NoArgsConstructor
 public class PostUser {
 
     private String email;
@@ -15,7 +14,9 @@ public class PostUser {
     private String facebook;
     private String github;
 
-    public String getEmail() {
+
+
+      public String getEmail() {
         return email;
     }
 
@@ -62,4 +63,7 @@ public class PostUser {
     public void setGithub(String github) {
         this.github = github;
     }
+
+
+
 }

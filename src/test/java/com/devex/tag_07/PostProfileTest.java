@@ -22,7 +22,7 @@ public class PostProfileTest {
 
         String userBody = """
                 {
-                "email": "sevgi9@gmail.com",
+                "email": "sevgi90@gmail.com",
                 "password": "Test123",
                 "name": "sevgi",
                 "google": "string",
@@ -78,7 +78,7 @@ public class PostProfileTest {
 
         assertEquals(response2.path("website"),website);
         System.out.println("*******************+");
-        response2.prettyPrint();
+
 
         System.out.println("***************************+");
 
