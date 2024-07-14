@@ -8,37 +8,16 @@ import com.google.gson.annotations.SerializedName;
 
 public class User { // map
 
-    @SerializedName("id")
-    @Expose
     private Integer id;
-    @SerializedName("name")
-    @Expose
     private String name;
-    @SerializedName("email")
-    @Expose
     private String email;
-    @SerializedName("password")
-    @Expose
     private String password;
-    @SerializedName("avatar")
-    @Expose
     private String avatar;
-    @SerializedName("date")
-    @Expose
     private String date;
-    @SerializedName("google")
-    @Expose
     private Object google;
-    @SerializedName("github")
-    @Expose
     private Object github;
-    @SerializedName("facebook")
-    @Expose
     private Object facebook;
-    @SerializedName("profileId")
-    @Expose
     private Integer profileId;
-
     public Integer getId() {
         return id;
     }
@@ -119,4 +98,35 @@ public class User { // map
         this.profileId = profileId;
     }
 
+    //  toString metodu olusturalim
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", date='" + date + '\'' +
+                ", google=" + google +
+                ", github=" + github +
+                ", facebook=" + facebook +
+                ", profileId=" + profileId +
+                '}';
+    }
+
+
+    // tum parametreleri kullanarak bir constructor olusturalim
+    public User(Integer id, String name, String email, String password, String avatar, String date, Object google, Object github, Object facebook, Integer profileId) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.avatar = avatar;
+        this.date = date;
+        this.google = google;
+        this.github = github;
+        this.facebook = facebook;
+        this.profileId = profileId;
+    }
 }

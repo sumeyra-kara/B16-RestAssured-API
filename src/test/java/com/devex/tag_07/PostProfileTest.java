@@ -22,7 +22,7 @@ public class PostProfileTest {
 
         String userBody = """
                 {
-                "email": "sevgi90@gmail.com",
+                "email": "sevgi94@gmail.com",
                 "password": "Test123",
                 "name": "sevgi",
                 "google": "string",
@@ -83,6 +83,8 @@ public class PostProfileTest {
         System.out.println("***************************+");
 
         response3.prettyPrint();
+
+        // benutzen Sie Map und Pojo für den gleichen Test
 
 
     }
