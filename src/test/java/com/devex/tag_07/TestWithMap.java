@@ -20,10 +20,25 @@ public class TestWithMap {
 
     @Test
     public void testwithMap() {
+        Map<String, Object> userMap = FürMapDataUserProfile.mapFürUser();
 
 
-        Response userResponse = given().contentType(ContentType.JSON).when().body(FürMapDataUserProfile.mapFürUser().toString()).post("/api/profile");
-        System.out.println("userResponse.statusCode() = " + userResponse.statusCode());
+        Response userResponse1 = given().contentType(ContentType.JSON)
+                                .when().body(userMap)
+                                .post("/api/users");
+
+        Map<String, Object> profilMap = FürMapDataUserProfile.mapFürProfile();
+
+        Response userResponse2 = given().contentType(ContentType.JSON)
+                                .when().body(profilMap)
+                                .post("/api/profile");
+
+        userResponse2.prettyPrint();
+
+        // Für assert
+
+        Map<String,Object> responseMap = userResponse2.as(Map.class); // response'u map'e cevirdim
+
 
     }
 }
