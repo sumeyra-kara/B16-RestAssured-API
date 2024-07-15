@@ -6,6 +6,7 @@ import com.devex.pojos.UserFürPojo;
 import com.google.gson.Gson;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -25,16 +26,16 @@ public class TestWithPojo {
     }
 
     @Test
-    public void testUserWithPojo() {
+    public static String getToken() {
 
-        UserFürPojo user = new UserFürPojo("sevgi","sevgi148@gmail.com","sevgi12345","sevgiGoogle","sevgiGithub","sevgiFacebook");
-        System.out.println("user.getName() = " + user.getName());
+        UserFürPojo user = new UserFürPojo("sevgi","sevgi1423@gmail.com","sevgi12345","sevgiGoogle","sevgiGithub","sevgiFacebook");
 
-        // Response olustur
+
         Response response = given().contentType(ContentType.JSON).when().body(user).post("/api/users");
 
         String token = response.path("token");
-        response.prettyPrint();
+        
+        return token;
 
     }
 
@@ -42,29 +43,34 @@ public class TestWithPojo {
     @Test
     public void testProfile() {
 
-        UserFürPojo user = new UserFürPojo("sevgi","sevgi148@gmail.com","sevgi12345","sevgiGoogle","sevgiGithub","sevgifacebook");
+        UserFürPojo user = new UserFürPojo("sevgi","sevgi14001@gmail.com","sevgi12345","sevgiGoogle","sevgiGithub","sevgifacebook");
 
-        Response response1 = given().contentType(ContentType.JSON).when().body(user).post("/api/users");
-        String token = response1.path("token");
+        Response response1 = given().contentType(ContentType.JSON)
+                            .when().body(user).post("/api/users")
+                            .then().log().all().extract().response();
+        // String token = response1.path("token");
+        String token= TestWithPojo.getToken();
 
 
         ProfilFürPojo profilForUser = new ProfilFürPojo("amazon","amazon.com","youtube.com","twitter.com","instagram.com","linkedinSevgi","sevgifacebook","Frankfurt","QA","Java,Selenium,CSS","sevgiGithub");
 
-        Response response = given().contentType(ContentType.JSON).when().header("x-auth-token",token)
-                            .body(profilForUser).post("/api/profile");
-        response.prettyPrint();
+        Response response =  given()
+                             .and().contentType(ContentType.JSON)
+                             .and().header("x-auth-token",token)
+                             .body(profilForUser).post("/api/profile")
+                             .then().log().all().extract().response();
 
-        Response response2 = given().header("x-auth-token", token).when().get("/api/profile/me");
+
+        Response response2 = given().accept(ContentType.JSON)
+                            .and().header("x-auth-token", token)
+                            .when().get("/api/profile/me")
+                             .then().log().all().extract().response();
 
 
-        /*
+
         System.out.println("***************** Assert Beginn ***********");
 
-        ProfilFürPojo profilFürPojo = response.as(ProfilFürPojo.class);
-
-
-         */
-
+        System.out.println("response2.path(\"company\") = " + response2.path("company"));
 
 
     }
