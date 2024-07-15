@@ -27,11 +27,13 @@ public class TestWithPojo {
     @Test
     public void testUserWithPojo() {
 
-        UserFürPojo user = new UserFürPojo("sevgi","sevgi145@gmail.com","sevgi12345","sevgiGoogle","sevgiGithub","sevgiFacebook");
+        UserFürPojo user = new UserFürPojo("sevgi","sevgi148@gmail.com","sevgi12345","sevgiGoogle","sevgiGithub","sevgiFacebook");
         System.out.println("user.getName() = " + user.getName());
 
         // Response olustur
         Response response = given().contentType(ContentType.JSON).when().body(user).post("/api/users");
+
+        String token = response.path("token");
         response.prettyPrint();
 
     }
@@ -39,30 +41,27 @@ public class TestWithPojo {
 
     @Test
     public void testProfile() {
-        UserFürPojo user = new UserFürPojo("sevgi","sevgi092@gmail.com","sevgi12345","sevgiGoogle","sevgiGithub","sevgifacebook");
 
-        String token  = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyMjI0fSwiaWF0IjoxNzIwOTY4MzYwLCJleHAiOjE3MjEzMjgzNjB9.LK2HEJh-GrC48t6mcMhfmIGUOASIdsqyGUpuIwFUSqs";
+        UserFürPojo user = new UserFürPojo("sevgi","sevgi148@gmail.com","sevgi12345","sevgiGoogle","sevgiGithub","sevgifacebook");
 
-        List<String> skills = new ArrayList<>();
-        skills.add("Java");
-        skills.add("Selenium");
-        skills.add("SQL");
+        Response response1 = given().contentType(ContentType.JSON).when().body(user).post("/api/users");
+        String token = response1.path("token");
 
 
-        ProfilFürPojo profilForUser = new ProfilFürPojo("amazon","amazon.com","youtube.com","twitter.com","instagram.com","linkedinSevgi","sevgifacebook","Frankfurt","QA",skills,"sevgiGithub", user);
-        Response response = given().contentType(ContentType.JSON).when().body(profilForUser).post("/api/profile");
+        ProfilFürPojo profilForUser = new ProfilFürPojo("amazon","amazon.com","youtube.com","twitter.com","instagram.com","linkedinSevgi","sevgifacebook","Frankfurt","QA","Java,Selenium,CSS","sevgiGithub");
+
+        Response response = given().contentType(ContentType.JSON).when().header("x-auth-token",token)
+                            .body(profilForUser).post("/api/profile");
         response.prettyPrint();
 
-        Response response1 = given().header("x-auth-token", token).get("/api/profile/me");
-
-        response1.prettyPrint();
+        Response response2 = given().header("x-auth-token", token).when().get("/api/profile/me");
 
 
         /*
         System.out.println("***************** Assert Beginn ***********");
 
         ProfilFürPojo profilFürPojo = response.as(ProfilFürPojo.class);
-        System.out.println("profilFürPojo.getLocation() = " + profilFürPojo.getLocation());
+
 
          */
 

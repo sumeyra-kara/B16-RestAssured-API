@@ -16,9 +16,9 @@ public class ProfilFürPojo {
     private String facebook;
     private String location;
     private String status;
-    private List<String> skills;
+    private String skills;
     private String githubusername;
-    private UserFürPojo user;
+
 
     public String getCompany() {
         return company;
@@ -92,11 +92,11 @@ public class ProfilFürPojo {
         this.status = status;
     }
 
-    public List<String> getSkills() {
+    public String getSkills() {
         return skills;
     }
 
-    public void setSkills(List<String> skills) {
+    public void setSkills(String skills) {
         this.skills = skills;
     }
 
@@ -106,14 +106,6 @@ public class ProfilFürPojo {
 
     public void setGithubusername(String githubusername) {
         this.githubusername = githubusername;
-    }
-
-    public UserFürPojo getUser() {
-        return user;
-    }
-
-    public void setUser(UserFürPojo user) {
-        this.user = user;
     }
 
     @Override
@@ -128,13 +120,12 @@ public class ProfilFürPojo {
                 ", facebook='" + facebook + '\'' +
                 ", location='" + location + '\'' +
                 ", status='" + status + '\'' +
-                ", skills=" + skills +
+                ", skills='" + skills + '\'' +
                 ", githubusername='" + githubusername + '\'' +
-                ", user=" + user +
                 '}';
     }
 
-    public ProfilFürPojo(String company, String website, String youtube, String twitter, String instagram, String linkedin, String facebook, String location, String status, List<String> skills, String githubusername, UserFürPojo user) {
+    public ProfilFürPojo(String company, String website, String youtube, String twitter, String instagram, String linkedin, String facebook, String location, String status, String skills, String githubusername) {
         this.company = company;
         this.website = website;
         this.youtube = youtube;
@@ -146,7 +137,6 @@ public class ProfilFürPojo {
         this.status = status;
         this.skills = skills;
         this.githubusername = githubusername;
-        this.user = user;
     }
 
     public ProfilFürPojo() {

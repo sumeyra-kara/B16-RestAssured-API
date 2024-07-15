@@ -31,16 +31,13 @@ public class PostProfileTest {
                 }
                 """;
 
-
-        String name = "sevgi";
         Response response = given().accept(ContentType.JSON)
-                .and().contentType(ContentType.JSON)
-                .and().body(userBody) // serialization
-                .when().post("/api/users");
+                            .and().contentType(ContentType.JSON)
+                            .and().body(userBody) // serialization
+                            .when().post("/api/users");  // bu sayede 1 token olusuyor
 
         String token = response.path("token");
         System.out.println("token = " + token);
-
 
         response.then().assertThat().statusCode(200);
         Assert.assertTrue(response.body().asString().contains("token"));
@@ -64,7 +61,7 @@ public class PostProfileTest {
 
         Response response2 = given().accept(ContentType.JSON)
                             .and().contentType(ContentType.JSON)
-                             .and().header("x-auth-token",token)
+                            .and().header("x-auth-token",token)
                             .and().body(profileBody) // serialization
                             .when().post("/api/profile");
 
@@ -72,8 +69,8 @@ public class PostProfileTest {
 
 
         Response response3 = given().accept(ContentType.JSON)
-                .and().header("x-auth-token", token)
-                .and().get("/api/profile/me");
+                            .and().header("x-auth-token", token)
+                            .and().get("/api/profile/me"); // profile inormationen
 
 
         assertEquals(response2.path("website"),website);
