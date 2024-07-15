@@ -28,7 +28,7 @@ public class TestWithPojo {
     @Test
     public static String getToken() {
 
-        UserFürPojo user = new UserFürPojo("sevgi","sevgi1423@gmail.com","sevgi12345","sevgiGoogle","sevgiGithub","sevgiFacebook");
+        UserFürPojo user = new UserFürPojo("sevgi","sevgi14001401@gmail.com","sevgi123456","sevgiGoogle","sevgiGithub","sevgiFacebook");
 
 
         Response response = given().contentType(ContentType.JSON).when().body(user).post("/api/users");
@@ -43,13 +43,17 @@ public class TestWithPojo {
     @Test
     public void testProfile() {
 
-        UserFürPojo user = new UserFürPojo("sevgi","sevgi14001@gmail.com","sevgi12345","sevgiGoogle","sevgiGithub","sevgifacebook");
+        UserFürPojo user = new UserFürPojo("sevgi","sevgi14001401@gmail.com","sevgi123456","sevgiGoogle","sevgiGithub","sevgifacebook");
 
         Response response1 = given().contentType(ContentType.JSON)
                             .when().body(user).post("/api/users")
                             .then().log().all().extract().response();
-        // String token = response1.path("token");
-        String token= TestWithPojo.getToken();
+        String token = response1.path("token");
+
+
+
+
+       // String token= TestWithPojo.getToken();
 
 
         ProfilFürPojo profilForUser = new ProfilFürPojo("amazon","amazon.com","youtube.com","twitter.com","instagram.com","linkedinSevgi","sevgifacebook","Frankfurt","QA","Java,Selenium,CSS","sevgiGithub");
