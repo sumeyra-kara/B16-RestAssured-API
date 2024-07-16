@@ -30,13 +30,10 @@ public class TestWithPojo {
 
         UserFürPojo user = new UserFürPojo("sevgi","sevgi14001401@gmail.com","sevgi123456","sevgiGoogle","sevgiGithub","sevgiFacebook");
 
-
         Response response = given().contentType(ContentType.JSON).when().body(user).post("/api/users");
-
         String token = response.path("token");
         
         return token;
-
     }
 
 
@@ -50,11 +47,7 @@ public class TestWithPojo {
                             .then().log().all().extract().response();
         String token = response1.path("token");
 
-
-
-
        // String token= TestWithPojo.getToken();
-
 
         ProfilFürPojo profilForUser = new ProfilFürPojo("amazon","amazon.com","youtube.com","twitter.com","instagram.com","linkedinSevgi","sevgifacebook","Frankfurt","QA","Java,Selenium,CSS","sevgiGithub");
 
@@ -73,9 +66,7 @@ public class TestWithPojo {
 
 
         System.out.println("***************** Assert Beginn ***********");
-
         System.out.println("response2.path(\"company\") = " + response2.path("company"));
-
 
     }
 }
