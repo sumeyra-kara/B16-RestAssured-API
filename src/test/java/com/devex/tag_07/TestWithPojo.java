@@ -1,22 +1,12 @@
 package com.devex.tag_07;
-
 import com.devex.pojos.ProfilFürPojo;
-import com.devex.pojos.User;
 import com.devex.pojos.UserFürPojo;
-import com.google.gson.Gson;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
-import static org.testng.Assert.assertEquals;
 
 public class TestWithPojo {
 
@@ -63,10 +53,7 @@ public class TestWithPojo {
                             .when().get("/api/profile/me")
                              .then().log().all().extract().response();
 
-
-
         System.out.println("***************** Assert Beginn ***********");
         System.out.println("response2.path(\"company\") = " + response2.path("company"));
-
     }
 }
